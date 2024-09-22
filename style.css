@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* || RESET */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* || GENERAL STYLES */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25rem;
+}
+
+/* || HEADER */
+.header {
+  background-image: linear-gradient(to bottom, whitesmoke 90%, #666);
+  position: sticky;
+  top: 0;
+}
+
+.header__container {
+  padding: 1rem 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__close-button,
+.header__open-button {
+  display: none;
+}
+
+.header__ul {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.header__link {
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.header__link:is(:hover, :focus) {
+  text-decoration: underline;
+}
+
+.header__li:first-child .header__link:is(:hover, :focus) {
+  color: midnightblue;
+}
+
+.header__li:nth-child(2) .header__link:is(:hover, :focus) {
+  color: coral;
+}
+
+.header__li:last-child .header__link:is(:hover, :focus) {
+  color: crimson;
+}
+
+/* || MAIN */
+.main__section {
+  min-height: 100vh;
+  scroll-margin-top: 5rem;
+  display: grid;
+  place-content: center;
+}
+
+.section__div {
+  background-color: black;
+  width: 200px;
+  height: 100px;
+  display: grid;
+  place-content: center;
+}
+
+.section__h2 {
+  color: whitesmoke;
+  padding: 0.5rem 2rem;
+  border: 4px dashed whitesmoke;
+}
+
+.section:first-of-type {
+  background-color: midnightblue;
+  background-image: linear-gradient(to bottom, midnightblue, rebeccapurple);
+  background-attachment: fixed;
+}
+
+.section:nth-of-type(2) {
+  background-color: coral;
+  background-image: linear-gradient(to bottom, coral, cornflowerblue);
+  background-attachment: fixed;
+}
+
+.section:last-of-type {
+  background-color: crimson;
+  background-image: linear-gradient(to bottom, crimson, orange);
+  background-attachment: fixed;
+}
+
+.main__div {
+  background-color: black;
+  padding: 2rem;
+  color: whitesmoke;
+}
+
+/* || FOOTER */
+.footer {
+  padding: 1rem;
+  text-align: center;
+  background-image: linear-gradient(to top, whitesmoke 90%, #666);
+}
+
+/* || MOBILE */
+@media screen and (max-width: 576px) {
+  .header__container {
+    position: relative;
+  }
+
+  .header__open-button,
+  .header__close-button {
+    width: 40px;
+    height: 40px;
+    border: none
+  }
+
+  .header__open-button {
+    display: block;
+  }
+
+  .header__button-icon {
+    position: relative;
+  }
+
+  .header__button-icon,
+  .header__button-icon::before,
+  .header__button-icon::after {
+    background-color: black;
+    width: 40px;
+    height: 6px;
+    border-radius: 3rem;
+    transition: all 0.5s;
+  }
+
+  .header__button-icon::before,
+  .header__button-icon::after {
+    content: "";
+    position: absolute;
+  }
+
+  .header__button-icon::before {
+    transform: translate(-20px, -14px);
+  }
+
+  .header__button-icon::after {
+    transform: translate(-20px, 14px);
+  }
+
+  .header__open-button:focus .header__button-icon {
+    background-color: transparent;
+  }
+
+  .header__open-button:focus .header__button-icon::before {
+    transform: translate(-20px) rotateZ(45deg);
+  }
+
+  .header__open-button:focus .header__button-icon::after {
+    transform: translate(-20px) rotateZ(-45deg);
+  }
+
+  .header__open-button:focus+.header__nav,
+  .header__nav:focus-within {
+    transform: scaleY(1);
+  }
+
+  .header__close-button:has(+.header__open-button:focus-within) {
+    background-color: transparent;
+    position: absolute;
+    z-index: 1;
+    right: 2rem;
+    display: block;
+  }
+
+  .header__close-button:focus+.header__open-button+.header__nav {
+    transform: scaleY(0);
+  }
+
+  .header__nav {
+    background-color: whitesmoke;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 0.25s;
+  }
+
+  .header__ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .header__li {
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+  }
+
+  .header__link {
+    display: block;
+    width: 80%;
+    padding: 0.5rem;
+    transition: all 0.25s;
+  }
+
+  .header__link:focus {
+    transform: scale(1.2);
+  }
+}
